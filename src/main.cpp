@@ -100,6 +100,22 @@ void loop() {
 
     trillSensorLeft.read();
     if (trillSensorLeft.getNumTouches() > 0 || trillSensorLeft.getNumHorizontalTouches() > 0) {
+        for(int i = 0; i < trillSensorLeft.getNumTouches(); i++) {
+            Serial.print("LTL ");
+            Serial.print(trillSensorLeft.touchLocation(i));
+//            Serial.print(" LTS ");
+//            Serial.print(trillSensorLeft.touchSize(i));
+            Serial.print(" ");
+        }
+        for(int i = 0; i < trillSensorLeft.getNumHorizontalTouches(); i++) {
+            Serial.print(" LHTL ");
+            Serial.print(trillSensorLeft.touchHorizontalLocation(i));
+//            Serial.print(" LHTS ");
+//            Serial.print(trillSensorLeft.touchHorizontalSize(i));
+            Serial.print(" ");
+        }
+
+        Serial.println("");
         BootKeyboard.press(KEY_SPACE);
         leftTouchActive = true;
     } else if (leftTouchActive) {
@@ -109,6 +125,22 @@ void loop() {
 
     trillSensorRight.read();
     if (trillSensorRight.getNumTouches() > 0 || trillSensorRight.getNumHorizontalTouches() > 0) {
+        for(int i = 0; i < trillSensorRight.getNumTouches(); i++) {
+            Serial.print("RTL ");
+            Serial.print(trillSensorRight.touchLocation(i));
+            Serial.print("RTS ");
+            Serial.print(trillSensorRight.touchSize(i));
+            Serial.print(" ");
+        }
+        for(int i = 0; i < trillSensorRight.getNumHorizontalTouches(); i++) {
+            Serial.print("RHTL ");
+            Serial.print(trillSensorRight.touchHorizontalLocation(i));
+            Serial.print("RHTS ");
+            Serial.print(trillSensorRight.touchHorizontalSize(i));
+            Serial.print(" ");
+        }
+
+        Serial.println("");
         BootKeyboard.press(KEY_ESC);
         rightTouchActive = true;
     } else if (rightTouchActive) {
